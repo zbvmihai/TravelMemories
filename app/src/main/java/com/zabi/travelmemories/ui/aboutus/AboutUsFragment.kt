@@ -1,4 +1,4 @@
-package com.zabi.travelmemories.ui.slideshow
+package com.zabi.travelmemories.ui.aboutus
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,11 +7,11 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.zabi.travelmemories.databinding.FragmentSlideshowBinding
+import com.zabi.travelmemories.databinding.FragmentAboutusBinding
 
-class SlideshowFragment : Fragment() {
+class AboutUsFragment : Fragment() {
 
-    private var _binding: FragmentSlideshowBinding? = null
+    private var _binding: FragmentAboutusBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -22,14 +22,14 @@ class SlideshowFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val slideshowViewModel =
-            ViewModelProvider(this).get(SlideshowViewModel::class.java)
+        val aboutUsViewModel =
+            ViewModelProvider(this).get(AboutUsViewModel::class.java)
 
-        _binding = FragmentSlideshowBinding.inflate(inflater, container, false)
+        _binding = FragmentAboutusBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textSlideshow
-        slideshowViewModel.text.observe(viewLifecycleOwner) {
+        val textView: TextView = binding.textGallery
+        aboutUsViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
         }
         return root
