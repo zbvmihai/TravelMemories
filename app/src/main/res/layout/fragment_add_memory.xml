@@ -16,7 +16,8 @@
         android:layout_width="match_parent"
         android:layout_height="150dp"
         android:layout_margin="16dp"
-        android:src="@drawable/ic_menu_gallery"
+        android:scaleType="centerCrop"
+        android:src="@drawable/imgplaceholder"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -68,6 +69,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:focusable="false"
+            android:clickable="true"
             android:inputType="none" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -119,6 +121,7 @@
         android:layout_height="50dp"
         android:layout_margin="16dp"
         android:background="@drawable/spinner_border"
+        android:textColor="?android:attr/textColorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -150,15 +153,15 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/saveBtn"
         style="@style/Widget.Material3.Button.ElevatedButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:text="Save"
+        android:text="@string/save"
         android:textStyle="bold"
-        android:backgroundTint="@color/SecondColor"
-        android:textColor="@color/MainColor"
+        android:backgroundTint="@color/MainColor"
+        android:textColor="@color/black"
         android:textSize="@dimen/MainTxt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

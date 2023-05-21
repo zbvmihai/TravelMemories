@@ -29,7 +29,6 @@ class MemoriesAdapter(private val context: Context, private var list: ArrayList<
         )
     }
 
-
     fun setOnClickListener(onClickListener: OnClickListener) {
         this.onClickListener = onClickListener
     }
@@ -58,4 +57,5 @@ class MemoriesAdapter(private val context: Context, private var list: ArrayList<
     interface OnClickListener {
         fun onClick(position: Int, model: Memory)
     }
+
 }

@@ -1,10 +1,7 @@
 package com.zabi.travelmemories.utils
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.Query
-import androidx.room.Update
+import androidx.room.*
 import com.zabi.travelmemories.models.Memory
 
 @Dao
@@ -20,4 +17,10 @@ interface MemoryDAO {
 
     @Query("DELETE FROM memory_table")
     suspend fun clear()
+
+    @Delete
+    suspend fun delete(memory: Memory)
+
+    @Query("DELETE FROM memory_table WHERE id = :memoryId")
+    suspend fun delete(memoryId: Long)
 }

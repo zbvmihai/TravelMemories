@@ -13,6 +13,14 @@
         <action
             android:id="@+id/action_nav_home_to_addMemoryFragment"
             app:destination="@id/addMemoryFragment" />
+        <action
+            android:id="@+id/action_nav_home_to_editMemoryFragment"
+            app:destination="@id/editMemoryFragment">
+            <argument
+                android:name="memory"
+                app:argType="com.zabi.travelmemories.models.Memory" />
+        </action>
+
     </fragment>
 
     <fragment
@@ -43,6 +51,17 @@
         tools:layout="@layout/fragment_add_memory" >
         <action
             android:id="@+id/action_addMemoryFragment_to_nav_home"
+            app:destination="@id/nav_home" />
+    </fragment>
+    <fragment
+        android:id="@+id/editMemoryFragment"
+        android:name="com.zabi.travelmemories.ui.editmemory.EditMemoryFragment"
+        android:label="Edit Memory" >
+        <argument
+            android:name="memory"
+            app:argType="com.zabi.travelmemories.models.Memory" />
+        <action
+            android:id="@+id/action_editMemoryFragment_to_nav_home"
             app:destination="@id/nav_home" />
     </fragment>
 </navigation>

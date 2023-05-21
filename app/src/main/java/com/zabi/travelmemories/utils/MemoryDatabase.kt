@@ -8,7 +8,7 @@ import androidx.room.TypeConverters
 import com.zabi.travelmemories.models.Memory
 
 
-@Database(entities = [Memory::class], version = 1, exportSchema = false)
+@Database(entities = [Memory::class], version = 2, exportSchema = false)
 @TypeConverters(Convertors::class)
 abstract class MemoryDatabase : RoomDatabase() {
 

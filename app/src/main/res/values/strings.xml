@@ -34,13 +34,16 @@
     <string name="memory_name">Memory Title</string>
     <string name="place_location">Place Location</string>
     <string name="date">Date</string>
+    <string name="save">Save</string>
+    <string name="update">Update</string>
 
     <string-array name="moods_array">
-        <item>How do you feel about this memory?</item>
-        <item>Happy</item>
-        <item>Sad</item>
-        <item>Excited</item>
-        <item>Nervous</item>
-        <item>Relaxed</item>
+        <item>Select a travel Type.</item>
+        <item>Air</item>
+        <item>Train</item>
+        <item>Road Trip</item>
+        <item>Cruise</item>
+        <item>Bicycle</item>
+        <item>Walking</item>
     </string-array>
 </resources>
