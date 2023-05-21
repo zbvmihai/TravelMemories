@@ -36,6 +36,16 @@
     <string name="date">Date</string>
     <string name="save">Save</string>
     <string name="update">Update</string>
+    <string name="travel_type">Travel Type</string>
+    <string name="mood_100">Mood: 100</string>
+    <string name="_23_05_2023">23/05/2023</string>
+    <string name="memory_place">Memory Place</string>
+    <string name="weather_10_degrees">Weather: 10 Degrees</string>
+    <string name="notes">Notes</string>
+    <string name="place">Place: %1$s</string>
+    <string name="travel_date">Travel Date: %1$s</string>
+    <string name="travel_mood">Travel Mood: %1$s</string>
+    <string name="type">Travel Type: %1$s</string>
 
     <string-array name="moods_array">
         <item>Select a travel Type.</item>
