@@ -4,9 +4,11 @@ import android.content.Context
 import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.zabi.travelmemories.databinding.MemoryCardBinding
 import com.zabi.travelmemories.models.Memory
+import com.zabi.travelmemories.ui.home.HomeFragmentDirections
 
 class MemoriesAdapter(private val context: Context, private var list: ArrayList<Memory>):
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -43,9 +45,8 @@ class MemoriesAdapter(private val context: Context, private var list: ArrayList<
             holder.tvMemoryDate.text = memory.date
 
             holder.itemView.setOnClickListener {
-                if (onClickListener != null) {
-                    onClickListener!!.onClick(position, memory)
-                }
+                val action = HomeFragmentDirections.actionNavHomeToDetailsFragment(memory)
+                it.findNavController().navigate(action)
             }
         }
     }

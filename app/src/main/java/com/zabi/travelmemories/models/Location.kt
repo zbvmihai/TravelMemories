@@ -4,8 +4,8 @@ import android.os.Parcel
 import android.os.Parcelable
 
 data class Location(
-    val lat: Double,
-    val long: Double
+    val lat: Double = 0.0,
+    val long: Double = 0.0
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readDouble(),

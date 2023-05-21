@@ -20,6 +20,9 @@
                 android:name="memory"
                 app:argType="com.zabi.travelmemories.models.Memory" />
         </action>
+        <action
+            android:id="@+id/action_nav_home_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
 
     </fragment>
 
@@ -63,5 +66,17 @@
         <action
             android:id="@+id/action_editMemoryFragment_to_nav_home"
             app:destination="@id/nav_home" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailsFragment"
+        android:name="com.zabi.travelmemories.ui.details.DetailsFragment"
+        android:label="Memory Details"
+        tools:layout="@layout/fragment_details" >
+        <action
+            android:id="@+id/action_detailsFragment_to_nav_home"
+            app:destination="@id/nav_home" />
+        <argument
+            android:name="memory"
+            app:argType="com.zabi.travelmemories.models.Memory" />
     </fragment>
 </navigation>
