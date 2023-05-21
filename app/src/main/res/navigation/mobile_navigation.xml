@@ -9,7 +9,11 @@
         android:id="@+id/nav_home"
         android:name="com.zabi.travelmemories.ui.home.HomeFragment"
         android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_nav_home_to_addMemoryFragment"
+            app:destination="@id/addMemoryFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_about"
@@ -32,4 +36,13 @@
         android:name="com.zabi.travelmemories.ui.settings.SettingsFragment"
         android:label="@string/menu_settings"
         tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/addMemoryFragment"
+        android:name="com.zabi.travelmemories.ui.addmemory.AddMemoryFragment"
+        android:label="Add Memory"
+        tools:layout="@layout/fragment_add_memory" >
+        <action
+            android:id="@+id/action_addMemoryFragment_to_nav_home"
+            app:destination="@id/nav_home" />
+    </fragment>
 </navigation>
