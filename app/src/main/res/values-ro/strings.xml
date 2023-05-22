@@ -52,6 +52,8 @@
     <string name="language_english">Engleză</string>
     <string name="language_romanian">Română</string>
     <string name="theme">Temă</string>
+    <string name="contact_us">Contact Us</string>
+    <string name="travelmemories_contact_com">TravelMemories@contact.com</string>
 
     <string-array name="language_options">
         <item>@string/language_english</item>
