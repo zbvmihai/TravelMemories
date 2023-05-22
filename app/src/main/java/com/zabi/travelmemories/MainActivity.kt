@@ -1,7 +1,9 @@
 package com.zabi.travelmemories
 
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
+import android.net.Uri
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.Toast
@@ -64,8 +66,9 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
-        val menuItem: MenuItem = navView.menu.findItem(R.id.nav_logout)
-        menuItem.setOnMenuItemClickListener { item ->
+        val logOutItem: MenuItem = navView.menu.findItem(R.id.nav_logout)
+        val shareItem: MenuItem = navView.menu.findItem(R.id.nav_share)
+        logOutItem.setOnMenuItemClickListener { item ->
             when (item.itemId) {
                 R.id.nav_logout -> {
                     Toast.makeText(this, "User Logged Out!", Toast.LENGTH_SHORT).show()
@@ -79,6 +82,21 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        shareItem.setOnMenuItemClickListener { item ->
+            when (item.itemId) {
+
+                R.id.nav_share -> {
+                    val appPackageName = packageName
+                    val intent = Intent(Intent.ACTION_SEND).apply {
+                        type = "text/plain"
+                        putExtra(Intent.EXTRA_TEXT, "Check out this awesome app: https://play.google.com/store/apps/details?id=$appPackageName")
+                    }
+                    startActivity(Intent.createChooser(intent, "Share via"))
+                    true
+                }
+                else -> false
+            }
+        }
     }
 
     private fun checkTheme(){
