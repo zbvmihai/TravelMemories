@@ -13,8 +13,7 @@ class AboutUsFragment : Fragment() {
 
     private var _binding: FragmentAboutusBinding? = null
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
+
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -28,10 +27,17 @@ class AboutUsFragment : Fragment() {
         _binding = FragmentAboutusBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textGallery
-        aboutUsViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
+        val tvTitle: TextView = binding.tvTitle
+        aboutUsViewModel.title.observe(viewLifecycleOwner) {
+            tvTitle.text = it
         }
+
+        val tvAboutUs: TextView = binding.tvAbout
+        aboutUsViewModel.aboutus.observe(viewLifecycleOwner) {
+            tvAboutUs.text = it
+        }
+
+
         return root
     }
 
