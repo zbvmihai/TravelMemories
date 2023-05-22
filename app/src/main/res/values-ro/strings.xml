@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">TravelMemories</string>
+    <string name="navigation_drawer_open">Deschideți sertarul de navigare</string>
+    <string name="navigation_drawer_close">Închideți sertarul de navigare</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Antetul de navigare</string>
+
+    <string name="action_settings">Setări</string>
+    <string name="menu_home">Acasă</string>
+    <string name="menu_about_us">Despre noi</string>
+    <string name="menu_contact_us">Contactați-ne</string>
+    <string name="menu_share">Distribuiți</string>
+    <string name="menu_settings">Setări</string>
+    <string name="menu_logout">Deconectare</string>
+    <string name="messages_header">Mesaje</string>
+    <string name="sync_header">Sincronizare</string>
+    <string name="signature_title">Semnătura ta</string>
+    <string name="reply_title">Acțiune implicită de răspuns</string>
+    <string name="sync_title">Sincronizare email periodică</string>
+    <string name="attachment_title">Descărcare atașamente primite</string>
+    <string name="attachment_summary_on">Descărcați automat atașamentele pentru mesajele primite</string>
+    <string name="attachment_summary_off">Descărcați atașamentele doar la cerere</string>
+    <string name="fab_button">Adaugă buton</string>
+    <string name="hello_blank_fragment">Fragment gol</string>
+    <string name="myname">Laurentiu Mihai Zabava</string>
+    <string name="myemail">zbvmihai@gmail.com</string>
+    <string name="placename">Nume locație</string>
+    <string name="memory_name">Titlu amintire</string>
+    <string name="place_location">Locație</string>
+    <string name="date">Dată</string>
+    <string name="save">Salvează</string>
+    <string name="update">Actualizează</string>
+    <string name="travel_type">Tip de călătorie</string>
+    <string name="mood_100">Dispoziție: 100</string>
+    <string name="_23_05_2023">23/05/2023</string>
+    <string name="memory_place">Locație amintire</string>
+    <string name="weather_10_degrees">Vreme: 10 grade</string>
+    <string name="notes">Note</string>
+    <string name="place">Localitate: %1$s</string>
+    <string name="travel_date">Data călătoriei: %1$s</string>
+    <string name="travel_mood">Dispoziție în călătorie: %1$s</string>
+    <string name="type">Tip de călătorie: %1$s</string>
+    <string name="temperature">Temperatură: %s°C</string>
+    <string name="dark_mode">Mod întunecat</string>
+    <string name="language">Limba</string>
+    <string name="satellite_mode">Mod satelit</string>
+    <string name="map_view">Vizualizare hartă</string>
+    <string name="map_scale">Scară hartă</string>
+    <string name="language_english">Engleză</string>
+    <string name="language_romanian">Română</string>
+    <string name="theme">Temă</string>
+
+    <string-array name="language_options">
+        <item>@string/language_english</item>
+        <item>@string/language_romanian</item>
+    </string-array>
+
+    <string-array name="moods_array">
+        <item>Selectați un tip de călătorie.</item>
+        <item>Avion</item>
+        <item>Tren</item>
+        <item>Călătorie cu mașina</item>
+        <item>Croazieră</item>
+        <item>Bicicletă</item>
+        <item>Plimbare</item>
+    </string-array>
+
+</resources>
