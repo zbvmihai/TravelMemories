@@ -121,6 +121,7 @@ class HomeFragment : Fragment() {
             .setPositiveButton("Yes") { dialog, _ ->
                 homeViewModel.deleteMemory(memory)
                 dialog.dismiss()
+                memoryAdapter?.notifyItemChanged(position)
             }
             .setNegativeButton("No") { dialog, _ ->
                 memoryAdapter?.notifyItemChanged(position)
