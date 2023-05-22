@@ -2,6 +2,7 @@ package com.zabi.travelmemories.ui.details
 
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -16,6 +17,11 @@ import com.zabi.travelmemories.databinding.FragmentDetailsBinding
 import com.zabi.travelmemories.databinding.FragmentHomeBinding
 import com.zabi.travelmemories.models.Memory
 import com.zabi.travelmemories.ui.home.HomeViewModel
+import com.zabi.travelmemories.utils.WeatherApiClient
+import com.zabi.travelmemories.utils.WeatherResponse
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class DetailsFragment : Fragment() {
@@ -69,6 +75,30 @@ class DetailsFragment : Fragment() {
         binding.tvDetailsMood.text = getString(R.string.travel_mood, memory.mood.toString())
         binding.tvDetailsNotes.text = memory.notes
 
+        val weatherApiClient = WeatherApiClient()
+        weatherApiClient.getWeatherData(memory.location!!.lat, memory.location!!.long, object :
+            Callback<WeatherResponse> {
+            override fun onResponse(call: Call<WeatherResponse>, response: Response<WeatherResponse>) {
+                if (response.isSuccessful) {
+                    val weatherResponse = response.body()
+                    weatherResponse?.let {
+                        val temperatureKelvin = it.main.temp
+                        val temperatureCelsius = convertKelvinToCelsius(temperatureKelvin).toInt()
+                        binding.tvDetailsWeather.text = getString(R.string.temperature, temperatureCelsius.toString())
+                    }
+                } else {
+                    Log.e("WeatherAPI", "WeatherAPI Error")
+                }
+            }
+
+            override fun onFailure(call: Call<WeatherResponse>, t: Throwable) {
+                Log.e("Network Error", "Network Error")
+            }
+        })
+    }
+
+    fun convertKelvinToCelsius(temperatureKelvin: Double): Double {
+        return temperatureKelvin - 273.15
     }
 
     override fun onDestroyView() {

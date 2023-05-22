@@ -46,6 +46,7 @@
     <string name="travel_date">Travel Date: %1$s</string>
     <string name="travel_mood">Travel Mood: %1$s</string>
     <string name="type">Travel Type: %1$s</string>
+    <string name="temperature">Temperature: %s°C</string>
 
     <string-array name="moods_array">
         <item>Select a travel Type.</item>
