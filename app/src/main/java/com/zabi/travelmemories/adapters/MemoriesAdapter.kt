@@ -1,6 +1,5 @@
 package com.zabi.travelmemories.adapters
 
-import android.content.Context
 import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -10,7 +9,7 @@ import com.zabi.travelmemories.databinding.MemoryCardBinding
 import com.zabi.travelmemories.models.Memory
 import com.zabi.travelmemories.ui.home.HomeFragmentDirections
 
-class MemoriesAdapter(private val context: Context, private var list: ArrayList<Memory>):
+class MemoriesAdapter(private var list: ArrayList<Memory>):
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var onClickListener: OnClickListener? = null

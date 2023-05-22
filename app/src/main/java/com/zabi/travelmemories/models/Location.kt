@@ -10,8 +10,7 @@ data class Location(
     constructor(parcel: Parcel) : this(
         parcel.readDouble(),
         parcel.readDouble()
-    ) {
-    }
+    )
 
     override fun describeContents(): Int {
         return 0

@@ -5,6 +5,7 @@ import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
+@Suppress("DEPRECATION")
 @Entity(tableName = "memory_table")
 data class Memory(
     @PrimaryKey(autoGenerate = true)
@@ -28,8 +29,7 @@ data class Memory(
         parcel.readInt(),
         parcel.readValue(Double::class.java.classLoader) as? Double,
         parcel.readString()
-    ) {
-    }
+    )
 
     override fun describeContents(): Int {
         return 0

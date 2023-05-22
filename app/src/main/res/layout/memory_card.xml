@@ -19,7 +19,7 @@
             android:layout_height="194dp"
             app:srcCompat="@drawable/brasov"
             android:scaleType="centerCrop"
-            android:contentDescription="Memory Photo"
+            android:contentDescription="@string/memory_photo"
             />
 
         <LinearLayout
@@ -33,7 +33,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/MainTxt"
-                android:text="Memory Name"
+                android:text="@string/memory_name"
                 android:textStyle="bold"
                 android:textColor="@color/MainColor"
                 android:textAppearance="?attr/textAppearanceTitleMedium"
@@ -43,7 +43,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:text="Memory Place"
+                android:text="@string/memory_place"
                 android:textStyle="bold"
                 android:textSize="@dimen/SecondaryTxt"
                 android:textAppearance="?attr/textAppearanceBodyMedium"
@@ -55,7 +55,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:textSize="@dimen/SmallTxt"
-                android:text="23/05/2023"
+                android:text="@string/_23_05_2023"
                 android:textAppearance="?attr/textAppearanceBodyMedium"
                 android:textColor="?android:attr/textColorPrimary"
                 />
