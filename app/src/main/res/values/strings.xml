@@ -47,6 +47,19 @@
     <string name="travel_mood">Travel Mood: %1$s</string>
     <string name="type">Travel Type: %1$s</string>
     <string name="temperature">Temperature: %s°C</string>
+    <string name="dark_mode">Dark Mode</string>
+    <string name="language">Language</string>
+    <string name="satellite_mode">Satellite Mode</string>
+    <string name="map_view">Map View</string>
+    <string name="map_scale">Map Scale</string>
+    <string name="language_english">English</string>
+    <string name="language_romanian">Romanian</string>
+    <string name="theme">Theme</string>
+
+    <string-array name="language_options">
+        <item>@string/language_english</item>
+        <item>@string/language_romanian</item>
+    </string-array>
 
     <string-array name="moods_array">
         <item>Select a travel Type.</item>

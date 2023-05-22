@@ -1,5 +1,7 @@
 package com.zabi.travelmemories.ui.details
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
@@ -10,6 +12,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.zabi.travelmemories.R
@@ -28,19 +31,16 @@ class DetailsFragment : Fragment() {
 
     private var _binding: FragmentDetailsBinding? = null
     private val binding get() = _binding!!
-    private lateinit var detailsViewModel: DetailsViewModel
     private lateinit var memory: Memory
+    private lateinit var sharedPrefs: SharedPreferences
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        detailsViewModel =
-            ViewModelProvider(this,
-                ViewModelProvider.AndroidViewModelFactory
-                    .getInstance(requireActivity().application))[DetailsViewModel::class.java]
 
+        sharedPrefs = requireActivity().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
         _binding = FragmentDetailsBinding.inflate(inflater, container, false)
 
         memory = DetailsFragmentArgs.fromBundle(requireArguments()).memory
@@ -57,9 +57,20 @@ class DetailsFragment : Fragment() {
             .replace(R.id.flMaps, mapFragment)
             .commit()
 
+
+
         mapFragment.getMapAsync { googleMap ->
+
+            val satelliteModeEnabled = sharedPrefs.getBoolean("isSatelliteModeEnabled", false)
+            googleMap.mapType = if (satelliteModeEnabled) {
+                GoogleMap.MAP_TYPE_HYBRID
+            } else {
+                GoogleMap.MAP_TYPE_NORMAL
+            }
+
             val location = LatLng(memory.location!!.lat, memory.location!!.long)
-            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location, 10f))
+            val mapScale = sharedPrefs.getFloat("mapScale", 50.0f)
+            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location, mapScale))
         }
     }
 
