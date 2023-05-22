@@ -12,7 +12,6 @@ import com.zabi.travelmemories.databinding.FragmentContactusBinding
 class ContactUsFragment : Fragment() {
 
     private var _binding: FragmentContactusBinding? = null
-
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -20,7 +19,6 @@ class ContactUsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
 
         _binding = FragmentContactusBinding.inflate(inflater, container, false)
 

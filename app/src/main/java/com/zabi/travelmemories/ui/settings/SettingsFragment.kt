@@ -12,12 +12,12 @@ import androidx.appcompat.app.AppCompatDelegate
 import com.zabi.travelmemories.databinding.FragmentSettingsBinding
 import com.zabi.travelmemories.R
 
+@Suppress("NAME_SHADOWING")
 class SettingsFragment : Fragment() {
 
     private var _binding: FragmentSettingsBinding? = null
     private val binding get() = _binding!!
     private lateinit var sharedPrefs: SharedPreferences
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -56,7 +56,6 @@ class SettingsFragment : Fragment() {
         val languages = resources.getStringArray(R.array.language_options)
         val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, languages)
         binding.spinnerEdit.adapter = adapter
-
 
         val selectedLanguage = sharedPrefs.getString("selectedLanguage", "")
         val currentIndex = languages.indexOf(selectedLanguage)

@@ -12,8 +12,6 @@ import com.zabi.travelmemories.databinding.FragmentAboutusBinding
 class AboutUsFragment : Fragment() {
 
     private var _binding: FragmentAboutusBinding? = null
-
-
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -22,7 +20,7 @@ class AboutUsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         val aboutUsViewModel =
-            ViewModelProvider(this).get(AboutUsViewModel::class.java)
+            ViewModelProvider(this)[AboutUsViewModel::class.java]
 
         _binding = FragmentAboutusBinding.inflate(inflater, container, false)
         val root: View = binding.root
@@ -36,7 +34,6 @@ class AboutUsFragment : Fragment() {
         aboutUsViewModel.aboutus.observe(viewLifecycleOwner) {
             tvAboutUs.text = it
         }
-
 
         return root
     }

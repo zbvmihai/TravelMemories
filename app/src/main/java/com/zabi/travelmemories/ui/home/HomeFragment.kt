@@ -14,17 +14,10 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.libraries.places.api.Places
 import com.zabi.travelmemories.R
 import com.zabi.travelmemories.adapters.MemoriesAdapter
 import com.zabi.travelmemories.databinding.FragmentHomeBinding
-import com.zabi.travelmemories.models.Location
 import com.zabi.travelmemories.models.Memory
-import com.zabi.travelmemories.utils.MemoryDatabase
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class HomeFragment : Fragment() {
 
@@ -76,11 +69,11 @@ class HomeFragment : Fragment() {
 
         binding.rvHome.layoutManager = LinearLayoutManager(activity)
 
-        memoryAdapter = activity?.let { MemoriesAdapter(it,memoryList) }!!
+        memoryAdapter = activity?.let { MemoriesAdapter(memoryList) }!!
         binding.rvHome.adapter = memoryAdapter
 
 
-        memoryAdapter?.setOnClickListener(object : MemoriesAdapter.OnClickListener {
+        memoryAdapter.setOnClickListener(object : MemoriesAdapter.OnClickListener {
             override fun onClick(position: Int, model: Memory) {
                 Toast.makeText(activity,"${memoryList[position].name} Clicked",Toast.LENGTH_SHORT).show()
             }
@@ -121,10 +114,10 @@ class HomeFragment : Fragment() {
             .setPositiveButton("Yes") { dialog, _ ->
                 homeViewModel.deleteMemory(memory)
                 dialog.dismiss()
-                memoryAdapter?.notifyItemChanged(position)
+                memoryAdapter.notifyItemChanged(position)
             }
             .setNegativeButton("No") { dialog, _ ->
-                memoryAdapter?.notifyItemChanged(position)
+                memoryAdapter.notifyItemChanged(position)
                 dialog.dismiss()
             }
             .show()

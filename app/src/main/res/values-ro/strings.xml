@@ -54,6 +54,7 @@
     <string name="theme">Temă</string>
     <string name="contact_us">Contact Us</string>
     <string name="travelmemories_contact_com">TravelMemories@contact.com</string>
+    <string name="memory_photo">Memory Photo</string>
 
     <string-array name="language_options">
         <item>@string/language_english</item>

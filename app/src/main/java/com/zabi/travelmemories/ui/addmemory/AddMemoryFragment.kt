@@ -78,7 +78,6 @@ class AddMemoryFragment : Fragment() {
             memory.notes = binding.etNotes.editText?.text.toString()
             memory.type = selectedType
             memory.location = location
-            // Save the memory object to the database
             viewLifecycleOwner.lifecycleScope.launch {
                 addMemoryViewModel.insert(memory)
                 Toast.makeText(requireContext(), "Memory saved", Toast.LENGTH_SHORT).show()
@@ -106,15 +105,17 @@ class AddMemoryFragment : Fragment() {
 
     private fun setupPlacePicker(){
         if (!Places.isInitialized()) {
-            Places.initialize(activity, "AIzaSyDzIb8ooyNWX9UD09oOFjTMWDn3IwfzeKA");
+            activity?.let { Places.initialize(it, "AIzaSyDzIb8ooyNWX9UD09oOFjTMWDn3IwfzeKA") }
         }
 
         binding.etPlaceLocation.editText?.setOnClickListener {
 
             val fields = listOf(Place.Field.ID, Place.Field.NAME, Place.Field.ADDRESS,Place.Field.LAT_LNG)
 
-            val intent = Autocomplete.IntentBuilder(AutocompleteActivityMode.FULLSCREEN, fields)
-                .build(activity)
+            val intent = activity?.let { it1 ->
+                Autocomplete.IntentBuilder(AutocompleteActivityMode.FULLSCREEN, fields)
+                    .build(it1)
+            }
             startActivityForResult(intent, 1)
         }
     }
@@ -160,24 +161,29 @@ class AddMemoryFragment : Fragment() {
         }
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (requestCode == 1) {
-            if (resultCode == RESULT_OK) {
-                val place = Autocomplete.getPlaceFromIntent(data!!)
-                binding.etPlaceLocation.editText?.setText(place.name)
-                location = Location(place.latLng?.latitude ?: 0.0, place.latLng?.longitude ?: 0.0)
-            } else if (resultCode == AutocompleteActivity.RESULT_ERROR) {
-                val status = Autocomplete.getStatusFromIntent(data!!)
-                Log.i(TAG, status.statusMessage!!)
-            } else if (resultCode == RESULT_CANCELED) {
-
+            when (resultCode) {
+                RESULT_OK -> {
+                    val place = Autocomplete.getPlaceFromIntent(data!!)
+                    binding.etPlaceLocation.editText?.setText(place.name)
+                    location = Location(place.latLng?.latitude ?: 0.0, place.latLng?.longitude ?: 0.0)
+                }
+                AutocompleteActivity.RESULT_ERROR -> {
+                    val status = Autocomplete.getStatusFromIntent(data!!)
+                    Log.i(TAG, status.statusMessage!!)
+                }
+                RESULT_CANCELED -> {
+                    Log.i("Canceled","Canceled")
+                }
             }
         }
 
         if (requestCode == GALLERY_REQUEST_CODE && resultCode == RESULT_OK) {
-            var selectedImageUri = data?.data
+            val selectedImageUri = data?.data
             selectedImageUri?.let {
                 val selectedImageBitmap = MediaStore.Images.Media.getBitmap(requireActivity().contentResolver, it)
                 val filename = "${System.currentTimeMillis()}.jpg" // Unique filename
@@ -199,6 +205,7 @@ class AddMemoryFragment : Fragment() {
         return file
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         when (requestCode) {
             PERMISSIONS_REQUEST_READ_STORAGE -> {

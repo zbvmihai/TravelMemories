@@ -33,6 +33,7 @@ import java.time.Instant
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 
+@Suppress("DEPRECATION")
 class EditMemoryFragment : Fragment() {
 
     private var _binding: FragmentEditMemoryBinding? = null
@@ -48,7 +49,7 @@ class EditMemoryFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         editMemoryViewModel = ViewModelProvider(this)[EditMemoryViewModel::class.java]
 
@@ -107,15 +108,17 @@ class EditMemoryFragment : Fragment() {
 
     private fun setupPlacePicker(){
         if (!Places.isInitialized()) {
-            Places.initialize(activity, "AIzaSyDzIb8ooyNWX9UD09oOFjTMWDn3IwfzeKA");
+            activity?.let { Places.initialize(it, "AIzaSyDzIb8ooyNWX9UD09oOFjTMWDn3IwfzeKA") }
         }
 
         binding.etEditPlaceLocation.editText?.setOnClickListener {
 
             val fields = listOf(Place.Field.ID, Place.Field.NAME, Place.Field.ADDRESS, Place.Field.LAT_LNG)
 
-            val intent = Autocomplete.IntentBuilder(AutocompleteActivityMode.FULLSCREEN, fields)
-                .build(activity)
+            val intent = activity?.let { it1 ->
+                Autocomplete.IntentBuilder(AutocompleteActivityMode.FULLSCREEN, fields)
+                    .build(it1)
+            }
             startActivityForResult(intent, 1)
         }
     }
@@ -139,19 +142,24 @@ class EditMemoryFragment : Fragment() {
         }
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (requestCode == 1) {
-            if (resultCode == Activity.RESULT_OK) {
-                val place = Autocomplete.getPlaceFromIntent(data!!)
-                binding.etEditPlaceLocation.editText?.setText(place.name)
-                location = Location(place.latLng?.latitude ?: 0.0, place.latLng?.longitude ?: 0.0)
-            } else if (resultCode == AutocompleteActivity.RESULT_ERROR) {
-                val status = Autocomplete.getStatusFromIntent(data!!)
-                Log.i(ContentValues.TAG, status.statusMessage!!)
-            } else if (resultCode == Activity.RESULT_CANCELED) {
-
+            when (resultCode) {
+                Activity.RESULT_OK -> {
+                    val place = Autocomplete.getPlaceFromIntent(data!!)
+                    binding.etEditPlaceLocation.editText?.setText(place.name)
+                    location = Location(place.latLng?.latitude ?: 0.0, place.latLng?.longitude ?: 0.0)
+                }
+                AutocompleteActivity.RESULT_ERROR -> {
+                    val status = Autocomplete.getStatusFromIntent(data!!)
+                    Log.i(ContentValues.TAG, status.statusMessage!!)
+                }
+                Activity.RESULT_CANCELED -> {
+                    Log.i("Canceled","Canceled")
+                }
             }
         }
     }
