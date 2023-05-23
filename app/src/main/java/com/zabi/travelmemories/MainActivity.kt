@@ -3,6 +3,8 @@ package com.zabi.travelmemories
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.content.res.Configuration
+import android.content.res.Resources
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.Toast
@@ -21,7 +23,9 @@ import com.google.android.material.navigation.NavigationView
 import com.zabi.travelmemories.databinding.ActivityMainBinding
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import java.util.*
 
+@Suppress("DEPRECATION")
 class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
@@ -33,6 +37,7 @@ class MainActivity : AppCompatActivity() {
 
         sharedPrefs = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
         checkTheme()
+        applyLanguage()
 
         installSplashScreen()
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -103,6 +108,14 @@ class MainActivity : AppCompatActivity() {
         } else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         }
+    }
+
+    private fun applyLanguage(){
+        val res: Resources = resources
+        val config: Configuration = res.configuration
+        val locale = Locale(res.configuration.locales.get(0).language)
+        config.setLocale(locale)
+        res.updateConfiguration(config, res.displayMetrics)
     }
 
     override fun onSupportNavigateUp(): Boolean {

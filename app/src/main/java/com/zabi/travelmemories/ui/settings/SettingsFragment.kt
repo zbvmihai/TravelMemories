@@ -2,15 +2,12 @@ package com.zabi.travelmemories.ui.settings
 
 import android.content.SharedPreferences
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.fragment.app.Fragment
 import com.zabi.travelmemories.databinding.FragmentSettingsBinding
-import com.zabi.travelmemories.R
 
 @Suppress("NAME_SHADOWING")
 class SettingsFragment : Fragment() {
@@ -32,7 +29,6 @@ class SettingsFragment : Fragment() {
         sharedPrefs = requireActivity().getSharedPreferences("MyPrefs", 0)
 
         setupDarkModeSwitch()
-        setupLanguageSpinner()
         setupSatelliteModeSwitch()
         setupMapScaleSlider()
 
@@ -48,30 +44,6 @@ class SettingsFragment : Fragment() {
             } else {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
                 sharedPrefs.edit().putBoolean("isDarkModeEnabled", false).apply()
-            }
-        }
-    }
-
-    private fun setupLanguageSpinner() {
-        val languages = resources.getStringArray(R.array.language_options)
-        val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, languages)
-        binding.spinnerEdit.adapter = adapter
-
-        val selectedLanguage = sharedPrefs.getString("selectedLanguage", "")
-        val currentIndex = languages.indexOf(selectedLanguage)
-
-        binding.spinnerEdit.setSelection(currentIndex)
-
-        binding.spinnerEdit.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                val selectedLanguage = parent?.getItemAtPosition(position).toString()
-
-                sharedPrefs.edit().putString("selectedLanguage", selectedLanguage).apply()
-
-                binding.spinnerEdit.setSelection(position)
-            }
-
-            override fun onNothingSelected(parent: AdapterView<*>?) {
             }
         }
     }
