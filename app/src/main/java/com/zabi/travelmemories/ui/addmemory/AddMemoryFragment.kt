@@ -186,7 +186,7 @@ class AddMemoryFragment : Fragment() {
             val selectedImageUri = data?.data
             selectedImageUri?.let {
                 val selectedImageBitmap = MediaStore.Images.Media.getBitmap(requireActivity().contentResolver, it)
-                val filename = "${System.currentTimeMillis()}.jpg" // Unique filename
+                val filename = "${System.currentTimeMillis()}.jpg"
                 imageFile = saveBitmapToPrivateStorage(selectedImageBitmap, filename)
                 binding.ivAddMemoryPhoto.setImageURI(selectedImageUri)
             }
